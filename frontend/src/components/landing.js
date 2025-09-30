@@ -2,8 +2,32 @@ import React, { useEffect, useState } from 'react'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import LoginModal from './LoginModal';
-
 // import Login from './login.js';
+
+export async function loginWithGoogle() {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log("User Info:", result.user);
+      alert(`Welcome ${result.user.displayName}`);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const firebaseConfig = {
+  apiKey: "AIzaSyBezZ2oHZjcFIvMheqCW-ZhkgS14ghvna4",
+  authDomain: "fitness-app-3ae17.firebaseapp.com",
+  projectId: "fitness-app-3ae17",
+  storageBucket: "fitness-app-3ae17.firebasestorage.app",
+  messagingSenderId: "577030915074",
+  appId: "1:577030915074:web:fb9cbd0f5bf2bb7bfc131b",
+  measurementId: "G-W5RNG6FD5R"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+
 
 const Landing = () => {
 
@@ -28,29 +52,7 @@ const Landing = () => {
     };
   }, []);    
   
-const firebaseConfig = {
-  apiKey: "AIzaSyBezZ2oHZjcFIvMheqCW-ZhkgS14ghvna4",
-  authDomain: "fitness-app-3ae17.firebaseapp.com",
-  projectId: "fitness-app-3ae17",
-  storageBucket: "fitness-app-3ae17.firebasestorage.app",
-  messagingSenderId: "577030915074",
-  appId: "1:577030915074:web:fb9cbd0f5bf2bb7bfc131b",
-  measurementId: "G-W5RNG6FD5R"
-};
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-
-const loginWithGoogle = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      console.log("User Info:", result.user);
-      alert(`Welcome ${result.user.displayName}`);
-    } catch (err) {
-      console.error(err);
-    }
-  };
   return (
     <div className="hero-bg">
       {/* Floating background */}
@@ -61,16 +63,15 @@ const loginWithGoogle = async () => {
       </div>
       
       {/* Login button */}
-      <button className="btn  login-btn btn-outline-primary"onClick={()=>setShowLogin(true)}           data-bs-target="#loginModal"
+      <button className="btn  login-btn btn-outline-primary col-3 col-md-2 col-lg-1"onClick={()=>setShowLogin(true)}           data-bs-target="#loginModal"
 >Login</button>
  {/* Login Modal */}
       <LoginModal show={showLogin} onClose={() => setShowLogin(false)} />
 
 
       {/* Hero section */}
-      <div className="container-fluid">
-        <div className="row min-vh-100 align-items-center justify-content-center">
-          <div className="col-12 text-center">
+        <div className="row  d-flex  min-vh-100 align-items-center ">
+          <div className="text-center ">
             
             {/* Main heading */}
             <div className="mb-5">
@@ -81,14 +82,14 @@ const loginWithGoogle = async () => {
             </div>
             
             {/* Action buttons */}
-            <div className="mb-5">
+            <div className=" mb-5">
               <button className="btn btn-primary-gradient me-3 mb-3"onClick={loginWithGoogle}>
                 Get Started Free
               </button>
               </div>
-            
+
             {/* AI visualization */}
-            <div className="ai-visual mt-5">
+            <div className="ai-visual mt-5  ">
               {/* Pulsing circles */}
               <div className="pulse-circle pulse-1"></div>
               <div className="pulse-circle pulse-2"></div>
@@ -112,11 +113,10 @@ const loginWithGoogle = async () => {
                 </svg>
               </div>
             </div>
-            
+            </div>
           </div>
-        </div>
+        
       </div>
-    </div>
   );
 }
 

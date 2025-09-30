@@ -1,26 +1,28 @@
 import React from 'react'
 import downloadImg from "../Asist/download.png";
+import { loginWithGoogle } from './landing';
+
 
 const LoginModal = ({show,onClose}) => {
   if (!show) return null; // Hide if show is false
 
   return (
      <div 
-      className="modal d-block"
+      className="modal d-block "
  style={{
     position: "fixed",
     top: 0,
     left: 0,
     width: "100vw",
     height: "100vh",
-    backgroundColor: "rgba(0,0,0,0.3)",
-    backdropFilter: "blur(5px)",
+    backgroundColor: "rgba(0, 0, 0, 0) " ,
+    backdropFilter: "blur(5px) ",
     zIndex: 1050,
   }}
       tabIndex="-1"
     >
       <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
+        <div className="modal-content change">
           <div className="modal-header">
             <h5 className="modal-title">Login</h5>
             <button type="button" className="btn-close" onClick={onClose}></button>
@@ -46,7 +48,8 @@ const LoginModal = ({show,onClose}) => {
             </form>
 
             <hr />
-            <button style={    {border: "1px solid #04090fff"}}
+            <button onClick={loginWithGoogle}
+            style={    {border: "1px solid #04090fff"}}
               type="button"
               className="btn  w-100" >
 <img src={downloadImg}   style={{ width: "40px", height: "20px"  }}
