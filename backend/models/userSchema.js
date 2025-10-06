@@ -10,12 +10,16 @@ const userSchema=new mongoose.Schema({
                type:String ,
                required:true
           },
+          asistanceImage:{
+               type:String
+          },
           asistancename:{
                type:String
           },history:[
                {type:String}
-          ]
-,timestamp:true})
+          ]}, 
+           { timestamps: true }   // ✅ correct way
+)
 
 const User=mongoose.model('User',userSchema);
 export default User;

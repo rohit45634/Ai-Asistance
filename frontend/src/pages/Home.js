@@ -14,13 +14,13 @@ export async function loginWithGoogle() {
     }
   };
   const firebaseConfig = {
-  apiKey: "AIzaSyBezZ2oHZjcFIvMheqCW-ZhkgS14ghvna4",
-  authDomain: "fitness-app-3ae17.firebaseapp.com",
-  projectId: "fitness-app-3ae17",
-  storageBucket: "fitness-app-3ae17.firebasestorage.app",
-  messagingSenderId: "577030915074",
-  appId: "1:577030915074:web:fb9cbd0f5bf2bb7bfc131b",
-  measurementId: "G-W5RNG6FD5R"
+   apiKey: "AIzaSyDmPuyt2MF4M0PcshUsUCNyWHa5fij1GNE",
+  authDomain: "fitness-app-cd6cf.firebaseapp.com",
+  projectId: "fitness-app-cd6cf",
+  storageBucket: "fitness-app-cd6cf.firebasestorage.app",
+  messagingSenderId: "560843419509",
+  appId: "1:560843419509:web:fa45c667b61718da756d3c",
+  measurementId: "G-9SKBT9K0MY"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -43,14 +43,14 @@ const Landing = () => {
   }
 }, [showLogin]);
   useEffect(() => {
-    // Lock scroll
+    // Disable scrolling when this component mounts
     document.body.style.overflow = "hidden";
-        // Cleanup on unmount
 
+    // Re-enable scrolling when this component unmounts
     return () => {
-      document.body.style.overflow = "auto"; // restore scroll
+      document.body.style.overflow = "auto";
     };
-  }, []);    
+  }, []);
   
 
   return (
@@ -63,7 +63,7 @@ const Landing = () => {
       </div>
       
       {/* Login button */}
-      <button className="btn  login-btn btn-outline-primary col-3 col-md-2 col-lg-1"onClick={()=>setShowLogin(true)}           data-bs-target="#loginModal"
+      <button className="btn  login-btn btn-outline-primary col-3 col-md-2 col-lg-1"onClick={()=>setShowLogin(true)}
 >Login</button>
  {/* Login Modal */}
       <LoginModal show={showLogin} onClose={() => setShowLogin(false)} />

@@ -5,6 +5,8 @@ import User from "../models/userSchema.js"
 export const Login =async(req,res)=>{
             try{
                const {email,password}=req.body
+      console.log("Email:", email, "Password:", password);
+
          // !validation 
           if(!email||!password){
                     return res.json({message:"Please Enter All field Require"})
@@ -28,16 +30,12 @@ return res.status(400).json({message:"Incorrect Password"})
 const token=await genToken(user._id)
 res.cookie("token",token,{
           httpOnly:true,maxAge:7*24*60*60*1000,
-          sameSite:"strict",
-          secure:false
+          
 
 })
-return res.status(200).json(user)
-
-     }catch(error){
-res.status(500).json({message:`Login Error ${error}`})  }
-
-
+return res.status(200).json({message:"login successfully",user})
+}catch(error){
+console.log(error)}
 }
    
 export const logOut=async(req,res)=>{
@@ -46,5 +44,6 @@ try{
         return  res.status(200).json({message:`Logout Successfully`})  
 
 }catch(error){
-res.status(500).json({message:`Logout Error ${error}`})  }
+return res.status(500).json({message:`Logout Error ${error}`})  }
 }
+
