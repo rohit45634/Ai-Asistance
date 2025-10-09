@@ -1,13 +1,16 @@
-import React, {  useState } from 'react'
+import React, {  useContext, useState } from 'react'
 import downloadImg from "../Asist/download.png";
 import { loginWithGoogle } from './Home.js';
 // import { userDataContext } from '../context/UserContext.js';
 import axios from 'axios';
+import { userDataContext } from '../context/UserContext.js';
+import {  useNavigate } from 'react-router-dom';
 
 
 const LoginModal = ({show,onClose}) => {
 
 // const {serverurl}=useContext(userDataContext)  //context data featch
+const navigate=useNavigate()
 
 //login state 
 const [email, setEmail] = useState("");
@@ -15,6 +18,11 @@ const [password, setPassword] = useState("");
 
 //eye ball state 
 const [showPassword,setshowPassword]=useState(false);
+
+//data share context create
+const {setuserData}=useContext(userDataContext)
+
+const[Loading,setLoading]=useState(false)
 
 //modal state 
 if (!show) return null; // Hide if show is false
@@ -28,7 +36,9 @@ if (!show) return null; // Hide if show is false
 try{
       let result=await axios.post("http://localhost:8080/api/auth/Login",{email,password},  { withCredentials: true }
 )
-console.log("Response:", result.data);
+setuserData(result.data)
+setLoading(false)
+navigate("/home")
 }catch(error){
 
    if (error.response) {

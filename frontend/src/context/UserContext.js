@@ -23,7 +23,7 @@ useEffect(()=>{
 handleCurrentUser()
 })         
  const value={
-  serverurl
+  serverurl,userData,setuserData
           }
   return (
     <div>

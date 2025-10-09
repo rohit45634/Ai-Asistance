@@ -10,10 +10,10 @@ const userSchema=new mongoose.Schema({
                type:String ,
                required:true
           },
-          asistanceImage:{
+          asistantImage:{
                type:String
           },
-          asistancename:{
+          asistantName:{
                type:String
           },history:[
                {type:String}
