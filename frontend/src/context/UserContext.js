@@ -5,10 +5,15 @@ export const userDataContext=createContext()
 const UserContext = ({children}) => {
           const serverurl="http://localhost:8080"
           const [userData,setuserData]=useState(null)  //state make for userData
+          const [frontendImage,setfrontendImage]=useState(null)
+          const [backendImage,setbackendimage]=useState(null)
+          const [selectImage,setselectImage]=useState(null)
 
-          const handleCurrentUser=async()=>{        //featch usedata api
+          
+
+          const handleCurrentUser=async(req,res)=>{        //featch usedata api
             try {
-              const result =await axios.get(`${serverurl}/api/user/current`,{withCredentials:true})
+              const result =await axios.get(`http://localhost:8080/api/user/current`,{withCredentials:true})
               setuserData(result.data)
               console.log(result.data)
            
@@ -19,11 +24,23 @@ const UserContext = ({children}) => {
           }
 
 
-useEffect(()=>{
-handleCurrentUser()
-})         
+  // ✅ Safe check before calling the API
+  useEffect(() => {
+    const tokenCookie = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("token="));
+
+    if (tokenCookie) {
+      handleCurrentUser();
+    } else {
+      console.log("❌ No token cookie found — user not logged in.");
+    }
+  }, []);
+ 
+     
  const value={
-  serverurl,userData,setuserData
+  serverurl,userData,setuserData,backendImage,setbackendimage,frontendImage,setfrontendImage,
+  selectImage,setselectImage
           }
   return (
     <div>

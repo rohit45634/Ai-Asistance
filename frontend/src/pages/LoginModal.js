@@ -9,7 +9,7 @@ import {  useNavigate } from 'react-router-dom';
 
 const LoginModal = ({show,onClose}) => {
 
-// const {serverurl}=useContext(userDataContext)  //context data featch
+  // const {serverurl}=useContext(userDataContext)  //context data featch
 const navigate=useNavigate()
 
 //login state 
@@ -30,28 +30,18 @@ if (!show) return null; // Hide if show is false
   
   const handleLogin =async(e)=>{
       e.preventDefault(); //  stop the page from reloading
-        console.log("Login button clicked"); // 🔹 see if function runs
 
-  console.log("Email:", email, "Password:", password); // 🔹 check values
 try{
-      let result=await axios.post("http://localhost:8080/api/auth/Login",{email,password},  { withCredentials: true }
-)
-setuserData(result.data)
-setLoading(false)
-navigate("/home")
-}catch(error){
-
-   if (error.response) {
+      let result=await axios.post("http://localhost:8080/api/auth/Login",{email,password},  { withCredentials: true })
+      setuserData(result.data)
+      navigate("/customize")
+    }catch(error){
+      if (error.response) {
     console.log("Error response:", error.response.data);
     alert(error.response.data.message); // 👈 show exact message
   } else {
     console.log("Error:", error.message);
-  }
-
-      }
-
-  }
-
+  }}}
   return (
      <div 
       className="modal d-block "
@@ -120,10 +110,10 @@ navigate("/home")
 
             <hr />
 
-            <button onClick={loginWithGoogle}
+            <button onClick={()=>{loginWithGoogle(navigate)}}
             style={    {border: "1px solid #04090fff"}}
               type="button"
-              className="btn  w-100 rounded-1" >
+              className=" w-100 rounded-1" >
 <img src={downloadImg}   style={{ width: "40px", height: "20px"  }}
  alt="googleImages" />
 

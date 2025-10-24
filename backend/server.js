@@ -9,20 +9,18 @@ import userRouter from './routes/userRoute.js';
 const app=express();  //instance of express application
 dotenv.config();  //load environment variables from .env file
 
-
-
-
-app.use(express.urlencoded({ extended: true })); // form-urlencoded data ke liye
-app.use(express.json())
-
-
 const corsOptions ={
   origin: "http://localhost:3000", // frontend URL
-  credentials: true                // 🔑 allow cookies/headers
+  credentials: true,                // 🔑 allow cookies/headers
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // optional but safe
+  allowedHeaders: ["Content-Type", "Authorization"],     // allow headers
 }
 app.use(cors(corsOptions));
 
 app.use(cookieParser())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true })); // form-urlencoded data ke liye
+
 
 //middleware pre use authentication 
 app.use("/api/auth",authRoute)

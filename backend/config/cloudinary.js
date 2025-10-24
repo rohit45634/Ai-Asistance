@@ -16,8 +16,8 @@ const uploadCloudinary = async(filepath) => {    //configuration cloudinary
           fs.unlink(filepath)
           return uploadResult.secure_url
 }catch(error){
-          
+
 }
 }
 
-export default cloudinary
+export default uploadCloudinary;

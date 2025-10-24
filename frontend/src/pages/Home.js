@@ -2,36 +2,43 @@ import React, { useEffect, useState } from 'react'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import LoginModal from './LoginModal';
+import { Navigate, useNavigate } from 'react-router-dom';
 // import Login from './login.js';
 
-export async function loginWithGoogle() {
+
+
+export const loginWithGoogle= async(navigate)=> {
     try {
-      const result = await signInWithPopup(auth, provider);
-      console.log("User Info:", result.user);
+      const result = await signInWithPopup(auth, provider); // Open Google login popup
+      console.log("User Info:", result.user);     // result.user contains user info
       alert(`Welcome ${result.user.displayName}`);
-    } catch (err) {
-      console.error(err);
+      navigate("/customize")
+            console.log("Token", result._tokenResponse);     // result.user contains user info
+
+    } catch (error) {
+      console.error(error);
     }
   };
+
   const firebaseConfig = {
-   apiKey: "AIzaSyDmPuyt2MF4M0PcshUsUCNyWHa5fij1GNE",
-  authDomain: "fitness-app-cd6cf.firebaseapp.com",
-  projectId: "fitness-app-cd6cf",
-  storageBucket: "fitness-app-cd6cf.firebasestorage.app",
-  messagingSenderId: "560843419509",
-  appId: "1:560843419509:web:fa45c667b61718da756d3c",
-  measurementId: "G-9SKBT9K0MY"
+   apiKey: "AIzaSyBkTIFyh8o5Rh9gfYMh2zkKdA4OYScBjyQ", //api key
+  authDomain: "ai-asistant-e2640.firebaseapp.com",  //Auth domain
+  projectId: "ai-asistant-e2640",                    //projectId
+  storageBucket: "ai-asistant-e2640.firebasestorage.app", //Storage Bucket
+  messagingSenderId: "1067558200023",                     //message Send Id
+  appId: "1:1067558200023:web:6b23e9f5165e3438eb0692",
+  measurementId: "G-2H0V07KSLX"
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+const auth = getAuth(app);               // links Firebase Auth to your app
+const provider = new GoogleAuthProvider();   // enables Google login
+
+
 
 
 
 const Landing = () => {
-
-
 //Login page popup state
    const [showLogin, setShowLogin] = useState(false);
      useEffect(() => {
@@ -52,6 +59,10 @@ const Landing = () => {
     };
   }, []);
   
+  
+
+
+
 
   return (
     <div className="hero-bg">
