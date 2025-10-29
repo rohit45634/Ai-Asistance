@@ -5,6 +5,7 @@ import authRoute from './routes/authRoute.js';
 import cookieParser from 'cookie-parser';
 import cors from "cors";
 import userRouter from './routes/userRoute.js';
+import geminiResponse from './gemini.js';
 
 const app=express();  //instance of express application
 dotenv.config();  //load environment variables from .env file
@@ -29,6 +30,14 @@ app.use("/api/user",userRouter)
 
 const PORT =process.env.PORT || 5000;
 connect();
+
+app.get("/",async(req,res)=>{
+  let command=req.query.command
+  let data =await geminiResponse(command)
+  res.json  (data)
+
+
+})
 app.listen(PORT,()=>{
           console.log(`Server is running on port ${PORT}`);
 })

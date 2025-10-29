@@ -15,13 +15,15 @@ const {userData,setuserData}=UserContext(userDataContext)
    <Routes>
             <Route path="/"  element={<LandingPage/>}/>
 
-              {/* <Route path="/home"  element={(userData?.assistantImage && userData?.assistantName)?<Home2/>:
-        <Navigate to={"/customize"}/>}/>  */}
+               {/* <Route path="/home"  element={(userData?.user?.assistantImage && userData?.user?.assistantName)?<Home2/>:
+        <Navigate to={"/customize"}/>}/>    */}
 
+<Route path="/home" element={<Home2/>}/>
+      
         <Route path="/customize"      element={<Customize/>}/>
+
         <Route path="/customize2"      element={<Customize2/>}/>
     <Route path="/signup"  element={<Signup/>}/>
-        <Route path="/home"  element={<Home2/>}/>
 
 
 

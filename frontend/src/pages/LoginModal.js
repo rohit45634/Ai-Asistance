@@ -32,7 +32,10 @@ if (!show) return null; // Hide if show is false
       e.preventDefault(); //  stop the page from reloading
 
 try{
-      let result=await axios.post("http://localhost:8080/api/auth/Login",{email,password},  { withCredentials: true })
+  if (!email || !password) {
+   return alert("Please enter email and password");
+}
+      const result=await axios.post("http://localhost:8080/api/auth/Login",{email,password},  { withCredentials: true })
       setuserData(result.data)
       navigate("/customize")
     }catch(error){
@@ -102,8 +105,9 @@ try{
              
                }}></i>
               </span>
-              </div>
-              <button type="submit" className="btn btn-primary w-100 mb-2 rounded-2"onClick={handleLogin} >
+              </div>               
+
+              <button type="submit" className="btn btn-primary w-100 mt-5 rounded-2"onClick={handleLogin} >
                 Login
               </button>
             </form>
@@ -113,7 +117,7 @@ try{
             <button onClick={()=>{loginWithGoogle(navigate)}}
             style={    {border: "1px solid #04090fff"}}
               type="button"
-              className=" w-100 rounded-1" >
+              className=" pt-2 pb-2 w-100 rounded-1" >
 <img src={downloadImg}   style={{ width: "40px", height: "20px"  }}
  alt="googleImages" />
 

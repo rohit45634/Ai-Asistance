@@ -22,7 +22,18 @@ const UserContext = ({children}) => {
               console.log(error)
             }
           }
+const getGeminiResponse=async(command)=>{
+        try {
+                const result=await axios.post("http://localhost:8080/api/user/asktoassistant",{command},{withCredentials:true})
+                                // console.log(result)
 
+                return result.data
+                
+        } catch (error) {
+                console.log(error)
+        }
+
+}
 
   // ✅ Safe check before calling the API
   useEffect(() => {
@@ -40,7 +51,7 @@ const UserContext = ({children}) => {
      
  const value={
   serverurl,userData,setuserData,backendImage,setbackendimage,frontendImage,setfrontendImage,
-  selectImage,setselectImage
+  selectImage,setselectImage,getGeminiResponse
           }
   return (
     <div>

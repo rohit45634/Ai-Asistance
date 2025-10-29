@@ -6,7 +6,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -59,9 +59,9 @@ const Signup = () => {
             <label className="form-label fw-bold">Username</label>
             <input
               type="text"
-              name="username"
+              name="name"
               className="form-control rounded-3"
-              placeholder="Enter your username"
+              placeholder="Enter your name"
               onChange={handleChange}
               required
             />

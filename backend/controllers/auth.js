@@ -6,6 +6,8 @@ import bcrypt from "bcryptjs";
 export const signUp =async (req, res) => {
   try {
     const { email, password, name } = req.body;
+    console.log("Received body:", req.body);
+
 
     const existing = await User.findOne({ email });
     if (existing) return res.status(400).json({ message: "User already exists" });
@@ -35,7 +37,7 @@ export const Login =async(req,res)=>{
 
          // !validation 
           if(!email||!password){
-                    return res.json({message:"Please Enter All field Require"})
+                    return res.status(400).json({message:"Please Enter All field Require"})
 
           }
 
@@ -68,7 +70,11 @@ console.log(error)}
    
 export const logOut=async(req,res)=>{
 try{
-          res.clearcookie("token")
+  res.clearCookie("token",{
+      httpOnly: true,
+      sameSite: "lax",
+      secure: false,
+    })
         return  res.status(200).json({message:`Logout Successfully`})  
 
 }catch(error){
