@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { userDataContext } from "../context/UserContext";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -26,13 +28,17 @@ const Signup = () => {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:8080/api/auth/register", formData, {
-        withCredentials: true,
-      });
-
-      console.log(res.data);
-      alert("Signup successful!");
-      navigate("/");
+      let result = await axios.post(
+        "http://localhost:8080/api/auth/register",
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
+      toast.success("signup successfully");
+      setTimeout(() => {
+        navigate("/");
+      }, 200);
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed. Try again!");
     } finally {
@@ -66,7 +72,6 @@ const Signup = () => {
               required
             />
           </div>
-
           <div className="mb-3">
             <label className="form-label fw-bold">Email</label>
             <input
@@ -78,7 +83,6 @@ const Signup = () => {
               required
             />
           </div>
-
           <div className="mb-3">
             <label className="form-label fw-bold">Password</label>
             <input
@@ -90,9 +94,7 @@ const Signup = () => {
               required
             />
           </div>
-
-          {error && <p className="text-danger small text-center">{error}</p>}
-
+          {error && <p className="text-danger small text-center">{error}</p>}n
           <button
             type="submit"
             className="btn btn-primary w-100 rounded-5 mt-2"
@@ -100,7 +102,6 @@ const Signup = () => {
           >
             {loading ? "Creating Account..." : "Sign Up"}
           </button>
-
           <p className="text-center mt-3">
             Already have an account?{" "}
             <span

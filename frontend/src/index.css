@@ -28,7 +28,24 @@ body {
   backdrop-filter: blur(10px);
 }
 
+
+
 .login-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.signup-btn {
+  position: fixed;
+  top: 5rem;
+  right: 2rem;
+  z-index: 1050;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(226, 26, 26, 0.893);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+.signup-btn:hover {
   background: rgba(255, 255, 255, 0.2);
   color: white;
 }
@@ -262,5 +279,14 @@ border-radius: 10px;
   align-items: center;
   justify-content: center;
 }
+.translate-x-full {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
 
+/* When open, move to original position */
+.translate-x-0 {
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+}
 

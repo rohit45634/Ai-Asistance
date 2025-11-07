@@ -1,42 +1,58 @@
-import LandingPage from "./pages/Home.js";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Customize from "./pages/Customize.js";
-import UserContext, { userDataContext } from "./context/UserContext.js";
-import Home2 from "./pages/Home2.js";
-import Customize2 from "./pages/Customize2.js";
-import Signup from "./pages/Signup.js";
+import { useContext, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+import Customize from "./pages/Customize";
+import Customize2 from "./pages/Customize2";
+import Home2 from "./pages/Home2";
+import { userDataContext } from "./context/UserContext";
 
 function App() {
- 
-const {userData,setuserData}=UserContext(userDataContext)
+  // Restore user from localStorage or start empty
+  const { userData, setUserData } = useContext(userDataContext);
+
   return (
-    <div className="App">
-   <Routes>
-            <Route path="/"  element={<LandingPage/>}/>
+    <>
+      <ToastContainer position="top-right" autoClose={2000} theme="colored" />
+      <Routes>
+        <Route
+          path="/home"
+          element={
+            userData?.user?.assistantImage && userData?.user?.assistantName ? (
+              <Home2 />
+            ) : (
+              <Navigate to={"/customize"} />
+            )
+          }
+        />
 
-               {/* <Route path="/home"  element={(userData?.user?.assistantImage && userData?.user?.assistantName)?<Home2/>:
-        <Navigate to={"/customize"}/>}/>    */}
+        <Route
+          path="/signup"
+          element={!userData ? <Signup /> : <Navigate to={"/home"} />}
+        />
 
-<Route path="/home" element={<Home2/>}/>
-      
-        <Route path="/customize"      element={<Customize/>}/>
+        {/* ✅ STEP 1: CUSTOMIZE (Select Image) */}
+        <Route
+          path="/customize"
+          element={userData ? <Customize /> : <Navigate to={"/signup"} />}
+        />
+        <Route
+          path="/customize2"
+          element={userData ? <Customize2 /> : <Navigate to={"/signup"} />}
+        />
 
-        <Route path="/customize2"      element={<Customize2/>}/>
-    <Route path="/signup"  element={<Signup/>}/>
+        <Route
+          path="/"
+          element={!userData ? <Home /> : <Navigate to={"/signup"} />}
+        />
 
-
-
-              
-
-
-
+        {/*  CATCH ALL */}
+        <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
-    
-
-    </div>
-
-  )
+    </>
+  );
 }
 
 export default App;
