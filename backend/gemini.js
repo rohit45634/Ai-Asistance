@@ -71,7 +71,6 @@ Now, based on the user's input, return only one JSON object that matches the fo
     );
 
     const text = result.data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    console.log("Gemini raw:", text);
     return text;
   } catch (error) {
     console.log("Gemini API Error:", error);
