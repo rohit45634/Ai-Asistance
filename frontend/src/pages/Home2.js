@@ -363,7 +363,7 @@ function Home2() {
       >
         <img
           src={
-            frontendImage ||
+             "frontendImage" ||
             `${userData?.user?.assistantImage}?t=${new Date().getTime()}`
           }
           alt="assistant_image"
