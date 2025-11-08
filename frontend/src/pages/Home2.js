@@ -361,9 +361,11 @@ function Home2() {
           overflow: "hidden",
         }}
       >
+        <img src="frontend"} alt="front_image  className="rounded-4 w-100 h-100"
+          style={{ objectFit: "cover", marginTop: "20px" }} />
         <img
           src={
-             "frontendImage" ||
+            
             `${userData?.user?.assistantImage}?t=${new Date().getTime()}`
           }
           alt="assistant_image"
