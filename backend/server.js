@@ -11,7 +11,7 @@ const app=express();  //instance of express application
 dotenv.config();  //load environment variables from .env file
 
 const corsOptions ={
-  origin: "http://localhost:3000", // frontend URL
+  origin: "https://virtualassistant-frontend-gntg.onrender.com", // frontend URL
   credentials: true,                // 🔑 allow cookies/headers
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // optional but safe
   allowedHeaders: ["Content-Type", "Authorization"],     // allow headers
