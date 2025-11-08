@@ -12,19 +12,6 @@ import { userDataContext } from "./context/UserContext";
 function App() {
   // Restore user from localStorage or start empty
   const { userData, setUserData } = useContext(userDataContext);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const storedData = localStorage.getItem("userData");
-    if (storedData) {
-      setUserData(JSON.parse(storedData));
-    }
-    setLoading(false); // ✅ mark done
-  }, [setUserData]);
-
-  if (!userData) {
-    return <div>Loading...</div>; // or a spinner
-  }
 
   return (
     <>
