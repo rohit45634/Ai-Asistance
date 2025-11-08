@@ -4,8 +4,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
-import Customize from "./pages/Customize";
-import Customize2 from "./pages/Customize2";
+import Customize from "../pages/Customize.js";
+import Customize2 from "../pages/Customize2.js";
 import Home2 from "./pages/Home2";
 import { userDataContext } from "./context/UserContext";
 

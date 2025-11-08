@@ -8,7 +8,7 @@ import image5 from "../Asist/Image5.png";
 import image6 from "../Asist/Image6.png";
 import { LuImagePlus } from "react-icons/lu";
 import { userDataContext } from "../context/UserContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Customize = () => {
   const {
