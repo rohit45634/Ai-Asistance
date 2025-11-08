@@ -27,13 +27,13 @@ const Customize2 = () => {
         formData,
         { withCredentials: true }
       );
-      const updatedData = result.data;
+      const updatedData = result.data.user;
 
+      setuserData(updatedData);
+      localStorage.setItem("userData", JSON.stringify(updatedData));
       setloading(false);
-      setuserData(result.data);
-      localStorage.setItem("userData", JSON.stringify(result.data));
 
-      navigate("/home");
+      setTimeout(() => navigate("/home"), 300); // ✅ wait 300ms
     } catch (error) {
       setloading(false);
       console.log(error);
