@@ -361,13 +361,12 @@ function Home2() {
           overflow: "hidden",
         }}
       >
-        <img src="frontend"} alt="front_image  className="rounded-4 w-100 h-100"
-          style={{ objectFit: "cover", marginTop: "20px" }} />
-        <img
-          src={
-            
-            `${userData?.user?.assistantImage}?t=${new Date().getTime()}`
-          }
+       <img
+  src={
+    frontendImage
+      ? frontendImage // ✅ show preview if user selected image
+      : `${userData?.user?.assistantImage}?t=${Date.now()}` // ✅ else show backend image
+  }
           alt="assistant_image"
           className="rounded-4 w-100 h-100"
           style={{ objectFit: "cover", marginTop: "20px" }}
