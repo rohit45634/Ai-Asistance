@@ -10,6 +10,8 @@ import { RxCross2 } from "react-icons/rx";
 function Home2() {
   const { userData, setuserData, getGeminiResponse } =
     useContext(userDataContext);
+
+  const { frontendImage } = useContext(userDataContext);
   const navigate = useNavigate();
   const [listening, setlistening] = useState(false);
   const [userText, setUserText] = useState("");
@@ -360,7 +362,10 @@ function Home2() {
         }}
       >
         <img
-          src={`${userData?.user?.assistantImage}?t=${new Date().getTime()}`}
+          src={
+            frontendImage ||
+            `${userData?.user?.assistantImage}?t=${new Date().getTime()}`
+          }
           alt="assistant_image"
           className="rounded-4 w-100 h-100"
           style={{ objectFit: "cover", marginTop: "20px" }}
