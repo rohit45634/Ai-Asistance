@@ -29,7 +29,7 @@ const Signup = () => {
 
     try {
       let result = await axios.post(
-        "http://localhost:8080/api/auth/register",
+        "https://virtualassistant-backend-5uc8.onrender.com/api/auth/register",
         formData,
         {
           withCredentials: true,
