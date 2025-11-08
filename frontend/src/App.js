@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
@@ -12,6 +12,16 @@ import { userDataContext } from "./context/UserContext";
 function App() {
   // Restore user from localStorage or start empty
   const { userData, setUserData } = useContext(userDataContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("userData");
+    if (storedData) {
+      setUserData(JSON.parse(storedData));
+    }
+    setLoading(false); // ✅ mark done
+  }, [setUserData]);
+
   if (!userData) {
     return <div>Loading...</div>; // or a spinner
   }
