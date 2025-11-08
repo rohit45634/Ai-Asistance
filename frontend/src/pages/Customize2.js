@@ -23,7 +23,7 @@ const Customize2 = () => {
         formData.append("imageUrl", selectImage);
       }
       const result = await axios.post(
-        "http://localhost:8080/api/user/update",
+        "https://virtualassistant-backend-5uc8.onrender.com/api/user/update",
         formData,
         { withCredentials: true }
       );
