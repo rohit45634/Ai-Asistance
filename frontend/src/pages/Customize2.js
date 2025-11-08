@@ -28,10 +28,10 @@ const Customize2 = () => {
         { withCredentials: true }
       );
       const updatedData = result.data.user;
-
-      setuserData(updatedData);
-      localStorage.setItem("userData", JSON.stringify(updatedData));
       setloading(false);
+
+      localStorage.setItem("userData", JSON.stringify(updatedData));
+      setuserData(updatedData);
 
       setTimeout(() => navigate("/home"), 300); // ✅ wait 300ms
     } catch (error) {

@@ -94,7 +94,7 @@ const Signup = () => {
               required
             />
           </div>
-          {error && <p className="text-danger small text-center">{error}</p>}n
+          {error && <p className="text-danger small text-center">{error}</p>}
           <button
             type="submit"
             className="btn btn-primary w-100 rounded-5 mt-2"
