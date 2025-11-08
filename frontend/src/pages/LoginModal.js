@@ -31,7 +31,7 @@ const LoginModal = ({ show, onClose }) => {
       }
 
       const result = await axios.post(
-        "http://localhost:8080/api/auth/Login",
+        "https://virtualassistant-backend-5uc8.onrender.com/api/auth/Login",
         { email, password },
         { withCredentials: true }
       );
