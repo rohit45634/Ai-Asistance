@@ -22,9 +22,12 @@ function Home2() {
 
   const handleLogOut = async () => {
     try {
-      await axios.get("http://localhost:8080/api/auth/Logout", {
-        withCredentials: true,
-      });
+      await axios.get(
+        "https://virtualassistant-backend-5uc8.onrender.com/api/auth/Logout",
+        {
+          withCredentials: true,
+        }
+      );
       localStorage.removeItem("userData");
 
       setuserData(null);
