@@ -1,11 +1,11 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
-import Customize from "../pages/Customize.js";
-import Customize2 from "../pages/Customize2.js";
+import Customize from "./pages/customize.js";
+import Customize2 from "./pages/Customize2.js";
 import Home2 from "./pages/Home2";
 import { userDataContext } from "./context/UserContext";
 
