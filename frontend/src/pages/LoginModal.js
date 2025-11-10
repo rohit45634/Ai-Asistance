@@ -36,9 +36,9 @@ const LoginModal = ({ show, onClose }) => {
         { withCredentials: true }
       );
       setuserData(result.data); // async, will update after a moment
-      setTimeout(() => {
+     
         navigate("/customize");
-      }, 200);
+      
 
       toast.success(`✅ Welcome back, ${result.data.user.name}!`);
     } catch (error) {
